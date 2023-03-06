@@ -11,12 +11,12 @@ const instance = axios.create({
 
 export const searchMovie = async (query, page = 1) => {
   try {
-    const response = await axios.get(
+    const response = await instance.get(
       `search/movie?&query=${query}&page=${page}`
     );
-    if (genres) {
-      await getGenres();
-    }
+    // if (genres) {
+    //   await getGenres();
+    // }
     return {
       page: response.data.page,
       totalPages: response.data.total_pages,
@@ -30,7 +30,7 @@ export const searchMovie = async (query, page = 1) => {
           voteCount: element.vote_count,
           popularity: element.popularity,
           id: element.id,
-          genres: element.genre_ids.map((id) => getGenre(id)),
+          // genres: element.genre_ids.map((id) => getGenre(id)),
           poster: element.poster_path
             ? `https://image.tmdb.org/t/p/w400${element.poster_path}`
             : null,
@@ -42,46 +42,21 @@ export const searchMovie = async (query, page = 1) => {
   }
 };
 
-export const getMostPopular = async (page = 1, timeWeek) => {
-  try {
-    const reqURL = `trending/movie/${timeWeek ? "week" : "day"}?}&page=${page}`;
-    const response = await axios.get(reqURL);
-
-    if (!genres) {
-      await getGenres();
-    }
-    return {
-      page: response.data.page,
-      totalPages: response.data.total_pages,
-      totalResults: response.data.total_results,
-      results: response.data.results.map((element) => {
-        return {
-          title: element.title,
-          about: element.overview,
-          release: element.release_date,
-          voteAverage: element.vote_average,
-          voteCount: element.vote_count,
-          popularity: element.popularity,
-          id: element.id,
-          genres: element.genre_ids.map((id) => getGenre(id)),
-          poster: element.poster_path
-            ? `https://image.tmdb.org/t/p/w400${element.poster_path}`
-            : null,
-        };
-      }),
-    };
-  } catch (error) {
-    throw new Error(error.message);
-  }
+export const getMostPopular = async () => {
+  const reqURL = `trending/movie/day`;
+  const { data } = await instance.get(reqURL);
+  return data.results;
 };
 
-export const getGenre = (id) => {
-  return this.genres.find((element) => element.id === id).name || "";
-};
+// export const getGenre = (id) => {
+//   return this.genres.find((element) => element.id === id).name || "";
+// };
 
 export const getFilmInfo = async (movie_id) => {
   try {
-    const data = await axios.get(`movie/${movie_id}?`).then((res) => res.data);
+    const data = await instance
+      .get(`movie/${movie_id}?`)
+      .then((res) => res.data);
 
     return {
       title: data.title,
