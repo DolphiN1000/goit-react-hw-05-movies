@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./home.module.scss";
 
 import { getMostPopular } from "../../../shared/components/styles/services/TheMoviesAPI";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -9,13 +10,14 @@ const Home = () => {
   useEffect(() => {
     getMostPopular().then(setMovies);
   }, []);
-  // const elementsf = getMostPopular();
-  // console.log(elementsf);
+
   const elements = movies.map(({ id, title, about }) => (
-    <li className={styles.item} key={id}>
+    <Link key={id}>
+    <li className={styles.item} >
       <h4>{title}</h4>
       <p>{about}</p>
     </li>
+    </Link>
   ));
   return (
     <>
