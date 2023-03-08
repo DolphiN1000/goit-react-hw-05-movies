@@ -1,0 +1,21 @@
+.menu {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    background-color:aqua;
+    padding: 10px;
+}
+
+.link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 20px;
+    color: navy;
+    background-color: gray;
+    margin-left: 10px;
+}
+
+.link:global(.active) {
+    color: crimson;
+    background-color: indigo;
+}

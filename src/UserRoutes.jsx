@@ -1,18 +1,19 @@
-import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-import { FidgetSpinner } from "react-loader-spinner";
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { FidgetSpinner } from 'react-loader-spinner';
 
-const Home = lazy(() => import("./modules/TheMovies/Home/Home"));
-const Movies = lazy(() => import("./modules/TheMovies/TheMovies"));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('./modules/TheMovies/TheMovies'));
 const MovieDetails = lazy(() =>
-  import("./modules/TheMovies/Movies/MovieDetails/MovieDetails")
+  import('./modules/TheMovies/Movies/MovieDetails/MovieDetails')
 );
 const Cast = lazy(() =>
-  import("./modules/TheMovies/Movies/MovieDetails/Cast/Cast")
+  import('./modules/TheMovies/Movies/MovieDetails/Cast/Cast')
 );
 const Reviews = lazy(() =>
-  import("./modules/TheMovies/Movies/MovieDetails/Reviews/Reviews")
+  import('./modules/TheMovies/Movies/MovieDetails/Reviews/Reviews')
 );
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const UserRoutes = () => {
   return (
@@ -25,18 +26,19 @@ const UserRoutes = () => {
           ariaLabel="dna-loading"
           wrapperStyle={{}}
           wrapperClass="dna-wrapper"
-          ballColors={["#ff0000", "#00ff00", "#0000ff"]}
+          ballColors={['#ff0000', '#00ff00', '#0000ff']}
           backgroundColor="#F4442E"
         />
       }
     >
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
         <Route path="/movies/:movieId" element={<MovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
