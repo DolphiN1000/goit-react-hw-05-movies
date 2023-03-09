@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './homePage.module.scss';
 
-import { getMostPopular } from '../../shared/components/styles/services/TheMoviesAPI';
+import { getMostPopular } from '../../shared/services/TheMoviesAPI';
 import { Link, useLocation } from 'react-router-dom';
 
 const HomePage = () => {

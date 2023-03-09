@@ -1,45 +1,22 @@
-import axios from "axios";
+import axios from 'axios';
 
 const instance = axios.create({
   baseURL: `https://api.themoviedb.org/3/`,
   params: {
-    api_key: "6c57fb02719926393bb8c06aa147886f",
-    language: "en-US",
-    include_adult: false,
+    api_key: '6c57fb02719926393bb8c06aa147886f',
+    language: 'en-US',
+    // include_adult: false,
   },
 });
 
 export const searchMovie = async (query, page = 1) => {
-  try {
-    const response = await instance.get(
-      `search/movie?&query=${query}&page=${page}`
-    );
-    // if (genres) {
-    //   await getGenres();
-    // }
-    return {
-      page: response.data.page,
-      totalPages: response.data.total_pages,
-      totalResults: response.data.total_results,
-      results: response.data.results.map((element) => {
-        return {
-          title: element.title,
-          about: element.overview,
-          release: element.release_date,
-          voteAverage: element.vote_average,
-          voteCount: element.vote_count,
-          popularity: element.popularity,
-          id: element.id,
-          // genres: element.genre_ids.map((id) => getGenre(id)),
-          poster: element.poster_path
-            ? `https://image.tmdb.org/t/p/w400${element.poster_path}`
-            : null,
-        };
-      }),
-    };
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const { data } = await instance.get(`search/movie`, {
+    params: {
+      query,
+      page,
+    },
+  });
+  return data.results;
 };
 
 export const getMostPopular = async () => {
@@ -52,29 +29,25 @@ export const getMostPopular = async () => {
 //   return this.genres.find((element) => element.id === id).name || "";
 // };
 
-export const getFilmInfo = async (movie_id) => {
-  try {
-    const data = await instance
-      .get(`movie/${movie_id}?`)
-      .then((res) => res.data);
+export const getFilmInfo = async id => {
+  const { data } = await instance.get(`movie/${id}?`);
+  return data;
+};
 
-    return {
-      title: data.title,
-      originalTitle: data.title,
-      about: data.overview,
-      genres: data.genres.map((genre) => genre.name),
-      release: data.release_date,
-      poster: data.poster_path
-        ? `https://image.tmdb.org/t/p/w400${data.poster_path}`
-        : null,
-      voteAverage: data.vote_average,
-      voteCount: data.vote_count,
-      popularity: data.popularity,
-      id: movie_id,
-    };
-  } catch (error) {
-    throw new Error(error.message);
-  }
+// const findClosest = (x, arr) => {
+//   var indexArr = arr.map(function (k) {
+//     return Math.abs(k - x);
+//   });
+//   var min = Math.min.apply(Math, indexArr);
+//   return indexArr.indexOf(min);
+// };
+
+export const getPoster = async (id, posterWidth = 400) => {
+  const { data } = await instance.get(`movie/${id}/images?`);
+  const posterArrWidth = data.posters.map(poster => poster.width);
+  const posterID = this.findClosest(posterWidth, posterArrWidth);
+  const PosterURL = data.posters[posterID].file_path;
+  return `https://image.tmdb.org/t/p/original${PosterURL}`;
 };
 
 // export default class FilmotekaAPI {
