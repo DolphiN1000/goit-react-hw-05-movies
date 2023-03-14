@@ -5,7 +5,7 @@ import { FidgetSpinner } from 'react-loader-spinner';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./modules/TheMovies/TheMovies'));
 const MovieDetails = lazy(() =>
-  import('./modules/TheMovies/Movies/MovieDetails/MovieDetails')
+  import('./pages/SinglMoviePage/SinglMoviePage')
 );
 const Cast = lazy(() =>
   import('./modules/TheMovies/Movies/MovieDetails/Cast/Cast')
