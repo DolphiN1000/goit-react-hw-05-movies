@@ -25,13 +25,13 @@ const MovieSearch = () => {
         setLoading(true);
         const result = await searchMovie(search, page);
         setItems(prevItems => ([...prevItems, ...result]));
-    //   } catch (error) {
-    //     setError(error.message);
+      } catch (error) {
+        setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-console.log(items)
+
     fetchMovie();
   }, [search, setItems, page, setError, setLoading, items]);
 
@@ -45,7 +45,7 @@ console.log(items)
 
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });
-  }, [search, page , setSearchParams]);
+  }, [ search]);
 
   return (
     <>
