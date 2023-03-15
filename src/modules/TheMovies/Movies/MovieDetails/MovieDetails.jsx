@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getFilmInfo, getPoster } from 'shared/services/TheMoviesAPI';
+import { getFilmInfo } from 'shared/services/TheMoviesAPI';
 
 
 const MovieDetails = () => {
