@@ -3,15 +3,15 @@ import { Routes, Route } from 'react-router-dom';
 import { FidgetSpinner } from 'react-loader-spinner';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const MoviesPage = lazy(() => import('./modules/TheMovies/TheMovies'));
+const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviePage'));
 const MovieDetails = lazy(() =>
   import('./pages/SinglMoviePage/SinglMoviePage')
 );
 const Cast = lazy(() =>
-  import('./modules/TheMovies/Movies/MovieDetails/Cast/Cast')
+  import('./pages/Cast/Cast')
 );
 const Reviews = lazy(() =>
-  import('./modules/TheMovies/Movies/MovieDetails/Reviews/Reviews')
+  import('./pages/Reviews/Reviews')
 );
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
@@ -34,7 +34,7 @@ const UserRoutes = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />}>
+        <Route path="/movies/:id" element={<MovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>

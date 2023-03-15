@@ -31,8 +31,21 @@ export const getMostPopular = async () => {
 
 export const getFilmInfo = async id => {
   const { data } = await instance.get(`movie/${id}?`);
+
   return data;
 };
+
+export const getCredits = async id => {
+  const { data } = await instance.get(`movie/${id}/credits?`);
+  return data.cast;
+};
+
+export const getReviews = async id => {
+  const { data } = await instance.get(`movie/${id}/reviews?`);
+  return data.results;
+};
+
+
 
 // const findClosest = (x, arr) => {
 //   var indexArr = arr.map(function (k) {
@@ -42,13 +55,13 @@ export const getFilmInfo = async id => {
 //   return indexArr.indexOf(min);
 // };
 
-export const getPoster = async (id, posterWidth = 400) => {
-  const { data } = await instance.get(`movie/${id}/images?`);
-  const posterArrWidth = data.posters.map(poster => poster.width);
-  const posterID = this.findClosest(posterWidth, posterArrWidth);
-  const PosterURL = data.posters[posterID].file_path;
-  return `https://image.tmdb.org/t/p/original${PosterURL}`;
-};
+// export const getPoster = async (id, posterWidth = 400) => {
+//   const { data } = await instance.get(`movie/${id}/images?`);
+//   const posterArrWidth = data.posters.map(poster => poster.width);
+//   const posterID = this.findClosest(posterWidth, posterArrWidth);
+//   const PosterURL = data.posters[posterID].file_path;
+//   return `https://image.tmdb.org/t/p/original${PosterURL}`;
+// };
 
 // export default class FilmotekaAPI {
 
