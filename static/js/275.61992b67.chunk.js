@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgoit_react_hw_05_movies=self.webpackChunkgoit_react_hw_05_movies||[]).push([[275],{275:function(i,e,t){t.r(e);var a=t(184);e.default=function(){return(0,a.jsx)("p",{children:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quibusdam ex repellat accusantium, voluptatibus repudiandae fugit aperiam quidem aut nobis distinctio! Voluptate et corrupti, praesentium quae repudiandae perspiciatis vitae molestiae."})}}}]);
-//# sourceMappingURL=275.61992b67.chunk.js.map
