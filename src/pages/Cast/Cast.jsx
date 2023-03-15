@@ -17,23 +17,24 @@ const Cast = () => {
     };
     fetchCredits();
   }, [id]);
-console.log(cast)
   const elements = cast.map(({ id, name, character, profile_path }) => (
     <li key={id}>
-  {profile_path && (
+      {profile_path && (
         <img
           src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
           alt={`the picture of ${name}`}
           width="200"
         ></img>
-    )}
+      )}
       <p>{name}</p>
       <p>{character}</p>
     </li>
   ));
   return (
     <ul>
-      {elements === true ? 'We don`t have any casts for this movie' : elements}
+      {elements.length !== 0
+        ? elements
+        : 'We don`t have any casts for this movie'}
     </ul>
   );
 };

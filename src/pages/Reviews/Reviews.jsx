@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getReviews } from "shared/services/TheMoviesAPI";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getReviews } from 'shared/services/TheMoviesAPI';
 const Reviews = () => {
-
-
-  const [reviews, setReviews ] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchReviews  = async () => {
+    const fetchReviews = async () => {
       try {
         const result = await getReviews(id);
         setReviews(result);
@@ -16,23 +14,21 @@ const Reviews = () => {
         console.log(error.message);
       }
     };
-    fetchReviews ();
+    fetchReviews();
   }, [id]);
-console.log(reviews)
   const elements = reviews.map(({ id, author, content }) => (
     <li key={id}>
-       <p>{author}</p>
+      <p>{author}</p>
       <p>{content}</p>
     </li>
   ));
   return (
     <ul>
-      {elements === true ? 'We don`t have any reviews for this movie' : elements}
+      {elements.length !== 0
+        ? elements
+        : 'We don`t have any reviews for this movie'}
     </ul>
   );
-
-
-
-}
+};
 
 export default Reviews;

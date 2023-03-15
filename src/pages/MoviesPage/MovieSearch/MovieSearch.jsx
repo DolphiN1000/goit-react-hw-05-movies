@@ -7,7 +7,7 @@ import MoviesList from 'shared/components/MoviesList/MoviesList';
 import { FidgetSpinner } from 'react-loader-spinner';
 
 const MovieSearch = () => {
-  const [items, setItems] = useState();
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
 
@@ -31,21 +31,20 @@ const MovieSearch = () => {
         setLoading(false);
       }
     };
-
     fetchMovie();
-  }, [search, setItems, page, setError, setLoading, items]);
+  }, [search, setItems, page, setLoading, setError, setLoading, searchMovie]);
 
   const onSearchMovie = useCallback(
     ({ search }) => {
       setSearchParams({ search, page: 1 });
       setItems([]);
     },
-    [setSearchParams]
+    [ setSearchParams]
   );
 
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });
-  }, [ search]);
+  }, [search]);
 
   return (
     <>

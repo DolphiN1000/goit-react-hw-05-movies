@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFilmInfo } from 'shared/services/TheMoviesAPI';
 
-
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const { id } = useParams();
@@ -16,11 +15,10 @@ const MovieDetails = () => {
       }
     };
     fetchMovie();
-    // const image =  getPoster(id)
   }, [id]);
   return (
     <>
-      <img src='#' alt="#" />
+      <img src="#" alt="#" />
       <h3>{movie?.title}</h3>
       <p>User Score:</p>
       <h4>Owerview</h4>

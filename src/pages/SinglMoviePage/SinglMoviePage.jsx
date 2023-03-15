@@ -1,5 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 
 import { getFilmInfo } from 'shared/services/TheMoviesAPI';
 
@@ -18,14 +24,11 @@ const SinglMoviePage = () => {
       try {
         const result = await getFilmInfo(id);
         setMovie(result);
-      } catch (error) {
-        console.log(error.message);
-      }
+      } catch (error) {}
     };
     fetchMovie();
   }, [id]);
   const goBack = useCallback(() => navigate(from), [navigate, from]);
-  console.log(movie);
   return (
     <>
       {movie && (
@@ -36,7 +39,7 @@ const SinglMoviePage = () => {
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={`poster of movie with name "${movie.title}"`}
-              height='400'
+              height="400"
             />
             <div className={styles.info}>
               {' '}
