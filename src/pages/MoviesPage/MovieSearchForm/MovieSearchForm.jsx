@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import useForm from 'shared/hoks/useForm';
 import styles from './movieSearchForm.module.scss';
 import PropTypes from 'prop-types';
