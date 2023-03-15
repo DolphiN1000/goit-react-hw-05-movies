@@ -6,7 +6,7 @@ import MovieSearchForm from '../MovieSearchForm/MovieSearchForm';
 import MoviesList from 'shared/components/MoviesList/MoviesList';
 import { FidgetSpinner } from 'react-loader-spinner';
 
-import styles from './movieSearch.module.scss'
+import styles from './movieSearch.module.scss';
 
 const MovieSearch = () => {
   const [items, setItems] = useState([]);
@@ -26,7 +26,7 @@ const MovieSearch = () => {
       try {
         setLoading(true);
         const result = await searchMovie(search, page);
-        setItems(prevItems => ([...prevItems, ...result]));
+        setItems(prevItems => [...prevItems, ...result]);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -41,7 +41,7 @@ const MovieSearch = () => {
       setSearchParams({ search, page: 1 });
       setItems([]);
     },
-    [ setSearchParams]
+    [setSearchParams]
   );
 
   const loadMore = useCallback(() => {
@@ -64,7 +64,10 @@ const MovieSearch = () => {
         />
       )}
       {error && <p className={styles.errorMessage}>{error}</p>}
-      {(items.length >= (Number(page) * 20)) && <button onClick={loadMore}>Load more</button>}    </>
+      {items.length >= Number(page) * 20 && (
+        <button onClick={loadMore}>Load more</button>
+      )}{' '}
+    </>
   );
 };
 export default MovieSearch;
