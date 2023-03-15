@@ -33,7 +33,7 @@ const MovieSearch = () => {
     };
 console.log(items)
     fetchMovie();
-  }, [search, setItems, page, setError, setLoading]);
+  }, [search, setItems, page, setError, setLoading, items]);
 
   const onSearchMovie = useCallback(
     ({ search }) => {
@@ -45,7 +45,7 @@ console.log(items)
 
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });
-  }, [search]);
+  }, [search, page , setSearchParams]);
 
   return (
     <>
@@ -63,7 +63,7 @@ console.log(items)
           backgroundColor="#F4442E"
         />
       )}
-      {/* {Boolean(items) && <button onClick={loadMore}>Load More</button>} */}
+      <button onClick={loadMore}>Load More</button>
     </>
   );
 };
