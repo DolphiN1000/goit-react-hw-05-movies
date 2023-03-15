@@ -47,7 +47,6 @@ const MovieSearch = () => {
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });
   }, [search, page, setSearchParams]);
-console.log(items)
   return (
     <>
       <MovieSearchForm initialState={initialState} onSubmit={onSearchMovie} />
