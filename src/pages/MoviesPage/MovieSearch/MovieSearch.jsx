@@ -32,7 +32,7 @@ const MovieSearch = () => {
       }
     };
     fetchMovie();
-  }, [search, setItems, page, setLoading, setError, setLoading, searchMovie]);
+  }, [search, setItems, page, setLoading, setError]);
 
   const onSearchMovie = useCallback(
     ({ search }) => {
@@ -44,7 +44,7 @@ const MovieSearch = () => {
 
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });
-  }, [search]);
+  }, [search, page, setSearchParams]);
 
   return (
     <>
