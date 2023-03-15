@@ -8,8 +8,8 @@ import { FidgetSpinner } from 'react-loader-spinner';
 
 const MovieSearch = () => {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState();
-  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
