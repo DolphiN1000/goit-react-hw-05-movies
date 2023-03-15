@@ -6,6 +6,8 @@ import MovieSearchForm from '../MovieSearchForm/MovieSearchForm';
 import MoviesList from 'shared/components/MoviesList/MoviesList';
 import { FidgetSpinner } from 'react-loader-spinner';
 
+import styles from './movieSearch.module.scss'
+
 const MovieSearch = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -62,8 +64,8 @@ const MovieSearch = () => {
           backgroundColor="#F4442E"
         />
       )}
-      <button onClick={loadMore}>Load More</button>
-    </>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+      {Boolean(items.length) && <button onClick={loadMore}>Load more</button>}    </>
   );
 };
 export default MovieSearch;
