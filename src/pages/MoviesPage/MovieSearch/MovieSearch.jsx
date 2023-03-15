@@ -47,7 +47,7 @@ const MovieSearch = () => {
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });
   }, [search, page, setSearchParams]);
-
+console.log(items)
   return (
     <>
       <MovieSearchForm initialState={initialState} onSubmit={onSearchMovie} />
@@ -65,7 +65,7 @@ const MovieSearch = () => {
         />
       )}
       {error && <p className={styles.errorMessage}>{error}</p>}
-      {Boolean(items.length) && <button onClick={loadMore}>Load more</button>}    </>
+      {(items.length >= (Number(page) * 20)) && <button onClick={loadMore}>Load more</button>}    </>
   );
 };
 export default MovieSearch;
